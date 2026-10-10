@@ -1,0 +1,165 @@
+/* ===============================
+   NAVBAR CONTAINER
+================================= */
+.navbar {
+  width: 100%;
+  padding: 14px 30px;
+
+  background: linear-gradient(
+    90deg,
+    #1e293b,
+    #334155
+  );
+
+  color: #f1f5f9;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ===============================
+   LEFT / CENTER / RIGHT GROUPING
+================================= */
+.nav-left,
+.nav-center,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left {
+  gap: 12px;
+}
+
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-right {
+  gap: 16px;
+}
+
+/* ===============================
+   TITLE
+================================= */
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0;
+
+  background: linear-gradient(90deg, #3b82f6, #06b6d4, #3b82f6);
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  animation: gradientText 4s linear infinite;
+}
+
+@keyframes gradientText {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ===============================
+   NOTIFICATION BELL
+================================= */
+.notification-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.bell-container {
+  position: relative;
+  font-size: 22px;
+  transition: transform 0.3s ease;
+}
+
+/* 🔥 Shake Animation */
+@keyframes shakeBell {
+  0% { transform: rotate(0); }
+  20% { transform: rotate(-15deg); }
+  40% { transform: rotate(15deg); }
+  60% { transform: rotate(-10deg); }
+  80% { transform: rotate(10deg); }
+  100% { transform: rotate(0); }
+}
+
+.bell-container.shake {
+  animation: shakeBell 0.6s ease;
+}
+
+/* 🔴 Badge */
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ef4444;
+  color: white;
+  font-size: 11px;
+  padding: 3px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* ===============================
+   BUTTONS
+================================= */
+.nav-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #e2e8f0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.nav-btn:hover {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border-color: transparent;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Logout Button */
+.logout {
+  border-color: #7f1d1d;
+  color: #f87171;
+}
+
+.logout:hover {
+  background: #ef4444;
+  color: white;
+  border-color: transparent;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 12px 16px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}

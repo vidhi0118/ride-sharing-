@@ -1,0 +1,20 @@
+<div class="history-wrapper">
+
+  <h2>🚗 Driver Ride History</h2>
+
+  <p *ngIf="rides.length === 0">No rides found 🚫</p>
+
+  <div class="ride-card" *ngFor="let r of rides">
+
+    <h3>{{ short(r.from) }} ➝ {{ short(r.to) }}</h3>
+
+    <div class="details">
+      <p>📅 {{ r.date }}</p>
+      <p>💰 ₹{{ r.fare }}</p>
+      <p>📊 {{ r.status }}</p>
+      <p>⭐ {{ r.rating }}</p>
+    </div>
+
+  </div>
+
+</div>

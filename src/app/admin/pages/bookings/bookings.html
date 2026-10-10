@@ -1,0 +1,15 @@
+<h2>All Bookings</h2>
+
+<table>
+  <tr>
+    <th>Ride ID</th>
+    <th>Passenger ID</th>
+    <th>Date</th>
+  </tr>
+
+  <tr *ngFor="let b of bookings">
+    <td>{{ b.rideId }}</td>
+    <td>{{ b.passengerId }}</td>
+    <td>{{ b.bookedAt?.toDate() | date }}</td>
+  </tr>
+</table>

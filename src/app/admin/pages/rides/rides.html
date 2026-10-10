@@ -1,0 +1,88 @@
+<div class="rides-wrapper">
+
+  <h2>🚗 All Rides</h2>
+
+  <!-- FILTERS -->
+  <div class="filters">
+
+    <input
+      type="text"
+      placeholder="Search city or driver..."
+      [(ngModel)]="searchText"
+      (input)="applyFilters()"
+    />
+
+    <select [(ngModel)]="selectedStatus" (change)="applyFilters()">
+      <option value="all">All</option>
+      <option value="booked">Booked</option>
+      <option value="completed">Completed</option>
+      <option value="cancelled">Cancelled</option>
+      <option value="pending">Pending</option>
+      <option value="paid">Paid</option>
+    </select>
+
+    <button (click)="exportCSV()">📄 Export</button>
+
+  </div>
+
+  <!-- RIDES -->
+  <div class="rides-container">
+
+    <div class="ride-card" *ngFor="let r of filteredRides">
+
+      <!-- ROUTE -->
+      <h3>{{ short(r.from) }} ➝ {{ short(r.to) }}</h3>
+
+      <!-- USERS -->
+      <div class="users">
+
+        <div class="user">
+          <img [src]="r.driverPhoto" />
+          <div>
+            <p class="label">Driver</p>
+            <p>{{ r.driverName }}</p>
+          </div>
+        </div>
+
+        <div class="user">
+  <div>
+    <p class="label">Passenger</p>
+    <p>{{ r.passengerName }}</p>
+  </div>
+</div>
+
+      </div>
+
+      <!-- DETAILS -->
+      <div class="details">
+
+        <p>💰 ₹{{ r.price }}</p>
+        <p>📅 {{ r.date }}</p>
+
+        <!-- STATUS -->
+        <span class="status" [ngClass]="r.status">
+          {{ r.status }}
+        </span>
+
+        <!-- PAYMENT -->
+        <span class="payment" [ngClass]="r.paymentStatus">
+          {{ r.paymentStatus }}
+        </span>
+
+      </div>
+
+      <!-- PENALTY -->
+      <div *ngIf="r.penalty > 0" class="penalty">
+        💸 Penalty: ₹{{ r.penalty }}
+      </div>
+
+      <!-- ACTION -->
+      <div class="actions">
+        <a [href]="r.mapLink" target="_blank">📍 Map</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

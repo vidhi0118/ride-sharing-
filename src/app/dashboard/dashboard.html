@@ -1,0 +1,326 @@
+<app-passenger-navbar></app-passenger-navbar>
+
+<div class="dashboard-layout" *ngIf="role === 'driver'">
+
+ <!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Driver Panel</h2>
+
+  <button (click)="activeTab='overview'">Dashboard</button>
+
+
+  <button (click)="activeTab='requests'">
+    Ride Requests ({{ pendingRequests.length }})
+  </button>
+
+  <!-- NEW -->
+  <button (click)="activeTab='ride-control'">
+    Ride Control 🚗
+  </button>
+
+  <!-- NEW -->
+  <button (click)="activeTab='ride-history'">
+    Ride History 📜
+  </button>
+
+
+  <button (click)="activeTab='settings'">Settings ⚙</button>
+</div>
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- OVERVIEW -->
+    <div *ngIf="activeTab==='overview'">
+
+      <div class="profile-card">
+
+   <div class="profile-left">
+
+          <img
+            [src]="previewUrl || driverProfile.photoUrl || 'assets/user-default.jpg'"
+            class="profile-img">
+
+          <div class="photo-actions">
+
+            <!-- ADD -->
+            <label class="photo-btn add-btn">
+              Add
+              <input type="file"
+                     hidden
+                     accept="image/*"
+                     (change)="onPhotoSelected($event)">
+            </label>
+
+            <!-- PREVIEW -->
+            <button class="photo-btn preview-btn"
+                    *ngIf="previewUrl"
+                    (click)="confirmUpload()">
+              Preview
+            </button>
+
+            <!-- REMOVE -->
+            <button class="photo-btn remove-btn"
+                    *ngIf="driverProfile.photoUrl"
+                    (click)="removePhoto()">
+              Remove
+            </button>
+
+          </div>
+        </div>
+
+  <!-- Profile Info -->
+  <div class="profile-info">
+    <h2>{{ driverProfile.name }}</h2>
+    <p>{{ experienceText || experienceYears + ' Years' }} Experience</p>
+    <div class="rating-box">
+
+  <h3>⭐ Your Rating</h3>
+
+  <p>
+    {{ driverRating.avg }} / 5
+    ({{ driverRating.count }} reviews)
+  </p>
+
+</div>
+  </div>
+
+</div>
+
+      <div class="stats-chart-container">
+
+  <!-- LEFT: STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>₹ {{ totalEarnings }}</h3>
+      <p>Total Earnings</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>{{ totalRides }}</h3>
+      <p>Total Rides</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>{{ pendingRequests.length }}</h3>
+      <p>Pending Requests</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: CHART -->
+  <div class="chart-box">
+
+    <h3>📊 Earnings Overview</h3>
+
+    <div class="filters">
+      <button (click)="applyFilter('all')">All</button>
+      <button (click)="applyFilter('7')">7 Days</button>
+      <button (click)="applyFilter('30')">30 Days</button>
+    </div>
+
+    <canvas id="earningsChart"></canvas>
+
+    <button class="pdf-btn" (click)="exportPDF()">
+      🧾 Download Report
+    </button>
+
+    <h4>📊 Ride Status</h4>
+<canvas #pieCanvas></canvas>
+
+  </div>
+
+</div>
+
+    </div>
+
+    <!-- REQUESTS -->
+    <div *ngIf="activeTab==='requests'">
+
+      <div class="request-card"
+           *ngFor="let request of pendingRequests">
+
+       <p><strong>From:</strong> {{ request.from }}</p>
+<p><strong>To:</strong> {{ request.to }}</p>
+        <button class="accept-btn"
+                (click)="acceptRequest(request)">Accept</button>
+
+        <button class="reject-btn"
+                (click)="rejectRequest(request)">Reject</button>
+      </div>
+
+    </div>
+
+    <!-- RIDE CONTROL -->
+
+<div *ngIf="activeTab==='ride-control'">
+
+<app-driver-ride-control
+*ngFor="let ride of acceptedRides"
+[rideId]="ride.id"
+[rideData]="ride">
+</app-driver-ride-control>
+
+</div>
+
+
+<!-- RIDE HISTORY -->
+
+<div *ngIf="activeTab==='ride-history'">
+
+<app-driver-ride-history
+[driverId]="currentUid">
+
+</app-driver-ride-history>
+
+</div>
+
+    <!-- SETTINGS -->
+    <div *ngIf="activeTab==='settings'" class="settings-section">
+
+      <h2>Driver Settings</h2>
+
+      <!-- Change Name -->
+      <input type="text"
+             [(ngModel)]="driverProfile.name"
+             placeholder="Edit Name">
+
+      <!-- Driving Start Date -->
+      <label>Driving Since</label>
+      <input type="date"
+             [(ngModel)]="driverProfile.drivingStartDate"
+             (change)="calculateExperience()">
+
+      <p>Experience: {{ experienceYears }} Years</p>
+
+
+      <label>City</label>
+
+<label>City</label>
+
+<input
+  type="text"
+  [(ngModel)]="cityQuery"
+  (input)="searchCity(cityQuery)"
+  placeholder="Search your city">
+
+<ul class="suggestion-list"
+    *ngIf="citySuggestions.length">
+
+  <li *ngFor="let city of citySuggestions"
+      (click)="selectCity(city)">
+
+      {{ city.display_name }}
+
+  </li>
+
+</ul>
+      <!-- Vehicles -->
+      <h3>Add Vehicle</h3>
+
+<!-- CATEGORY -->
+<label>Vehicle Type</label>
+<select [(ngModel)]="selectedCategory" (change)="selectedBrand=''">
+  <option value="">Select Type</option>
+  <option *ngFor="let cat of vehicleCategories" [value]="cat">
+    {{ cat }}
+  </option>
+</select>
+
+<!-- BRAND BASED ON CATEGORY -->
+<div *ngIf="selectedCategory === 'Car'">
+  <label>Car Brand</label>
+  <select [(ngModel)]="selectedBrand">
+    <option *ngFor="let brand of carBrands" [value]="brand">
+      {{ brand }}
+    </option>
+  </select>
+</div>
+
+<div *ngIf="selectedCategory === 'Bike'">
+  <label>Bike Brand</label>
+  <select [(ngModel)]="selectedBrand">
+    <option *ngFor="let brand of bikeBrands" [value]="brand">
+      {{ brand }}
+    </option>
+  </select>
+</div>
+
+<div *ngIf="selectedCategory === 'Large Vehicle'">
+  <label>Large Vehicle</label>
+  <select [(ngModel)]="selectedBrand">
+    <option *ngFor="let brand of largeVehicleBrands" [value]="brand">
+      {{ brand }}
+    </option>
+  </select>
+</div>
+
+<!-- OTHER TEXT INPUT -->
+<div *ngIf="selectedBrand === 'Other' || selectedCategory === 'Other'">
+  <input type="text"
+         [(ngModel)]="customVehicleName"
+         placeholder="Enter Vehicle Name">
+</div>
+
+<!-- YEAR -->
+<input type="number"
+       [(ngModel)]="vehicleYear"
+       placeholder="Vehicle Year">
+
+<!-- SEATS -->
+<input type="number"
+       [(ngModel)]="vehicleSeats"
+       placeholder="Number of Seats">
+
+<button (click)="addVehicle()">Add Vehicle</button>
+
+<h3>Your Vehicles</h3>
+
+<div *ngIf="driverProfile.vehicles?.length === 0">
+  No vehicles added yet.
+</div>
+
+<div class="vehicle-card"
+     *ngFor="let v of driverProfile.vehicles; let i = index">
+
+  <div>
+    <strong>{{ v.category }}</strong> - {{ v.name }}
+    <br>
+    Year: {{ v.year }} | Seats: {{ v.seats }}
+  </div>
+
+  <button class="remove-btn"
+          (click)="removeVehicle(i)">
+    Remove
+  </button>
+
+</div>
+
+<label>Default Vehicle</label>
+<select [(ngModel)]="driverProfile.defaultVehicle">
+  <option *ngFor="let v of driverProfile.vehicles"
+          [value]="v.name">
+    {{ v.name }} - {{ v.year }}
+  </option>
+</select>
+
+      <button class="save-btn"
+              (click)="saveProfile()">Save Changes</button>
+
+    </div>
+
+  </div>
+
+  <!-- RIDE CONTROL -->
+
+<div *ngIf="activeTab==='ride-control'">
+
+  <app-driver-ride-control
+    *ngFor="let request of pendingRequests"
+    [rideId]="request.rideId"
+    [rideData]="request">
+
+  </app-driver-ride-control>
+
+</div>
+
+
+</div>

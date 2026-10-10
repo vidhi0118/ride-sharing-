@@ -1,0 +1,135 @@
+/* FULL BACKGROUND */
+.login-bg {
+  height: 100vh;
+  width: 100%;
+  background: url('/assets/green-car.avif') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* DARK OVERLAY */
+.login-bg::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* LOGIN CARD */
+.login-card {
+  position: relative;
+  width: 460px;
+  padding: 50px;
+  border-radius: 16px;
+
+  /* GLASS EFFECT */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+
+  /* GLOW */
+  box-shadow:
+    0 0 20px rgba(46, 204, 113, 0.6),
+    0 0 40px rgba(46, 204, 113, 0.4);
+
+  color: #ffffff;
+  text-align: center;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* TEXT */
+h2 {
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+/* INPUTS */
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+input::placeholder {
+  color: #eee;
+}
+
+/* PASSWORD */
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+}
+
+/* BUTTON */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2ecc71;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #27ae60;
+  box-shadow: 0 0 10px #2ecc71;
+}
+
+/* LINKS */
+.links {
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.links a {
+  color: #2ecc71;
+  text-decoration: none;
+}
+
+/* SPINNER */
+.spinner {
+  border: 3px solid #fff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

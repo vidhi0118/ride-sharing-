@@ -1,0 +1,458 @@
+/* ===== GLOBAL ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f7f9fc;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== LAYOUT ===== */
+.main-layout {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+}
+
+.container {
+  flex: 1;
+}
+
+/* ===== TOP SECTION (CENTERED) ===== */
+.top-section {
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
+
+/* ===== ROUTE BOX ===== */
+.route-box {
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+   position: relative;
+  overflow: visible;
+}
+
+/* ===== ROUTE ROW ===== */
+.route-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===== INPUT ===== */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+   position: relative;
+  z-index: 10;
+}
+.suggestion-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+
+  background: white;
+  border-radius: 10px;
+  margin-top: 5px;
+
+  max-height: 200px;
+  overflow-y: auto;
+
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+
+  z-index: 9999;   /* 🔥 MUST BE HIGH */
+}
+.suggestion-list li {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.suggestion-list li:hover {
+  background: #e3f2fd;
+}
+.input-group input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #bbdefb;
+  background: #ffffff;
+}
+
+/* ===== FILTERS ===== */
+.filters {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===== FILTER INPUTS ===== */
+.filters input,
+.filters select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #c8e6c9;
+  background: #ffffff;
+}
+
+/* ===== SEARCH BUTTON ===== */
+.search-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #81c784, #66bb6a);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===== GRID CENTER ===== */
+.drivers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
+  justify-content: center;
+  gap: 20px;
+}
+
+/* ===== DRIVER CARD ===== */
+.driver-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 🌸 SOFT GLOW */
+.driver-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(129,199,132,0.3);
+}
+
+/* 🚗 CAR MOVE ANIMATION */
+.driver-card::after {
+  content: "🚗";
+  position: absolute;
+  bottom: 10px;
+  left: -30px;
+  font-size: 18px;
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.driver-card:hover::after {
+  left: 90%;
+  opacity: 1;
+}
+
+/* ===== DRIVER PHOTO ===== */
+.driver-photo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  background: #90caf9;
+  color: white;
+  font-size: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== TEXT ===== */
+.driver-card h3 {
+  margin: 10px 0;
+  color: #37474f;
+}
+
+.driver-info p,
+.driver-card p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #607d8b;
+}
+
+/* ===== VEHICLE ===== */
+.vehicle-list {
+  margin-top: 10px;
+}
+
+.vehicle-item {
+  font-size: 13px;
+  margin: 4px 0;
+  transition: 0.3s;
+}
+.leaflet-marker-icon {
+  transition: transform 0.3s ease;
+}
+
+.leaflet-marker-icon:hover {
+  transform: scale(1.2);
+}
+#map {
+  height: 500px;
+  width: 100%;
+  border-radius: 16px;
+}
+/* 🚗 BOUNCE */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.vehicle-item:hover {
+  animation: bounce 0.5s ease;
+}
+
+/* ===== BADGE ===== */
+.default-badge {
+  background: #ffcc80;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+/* ===== BOOK BUTTON ===== */
+/* ===== DRIVER CARD (PREMIUM) ===== */
+.driver-card {
+  background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+  border-radius: 22px;
+  padding: 22px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+/* ✨ SHINE EFFECT */
+.driver-card::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.5),
+    transparent
+  );
+  top: -50%;
+  left: -50%;
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: 0.6s;
+}
+
+.driver-card:hover::before {
+  opacity: 1;
+  left: 100%;
+}
+
+/* 🚗 FLOATING CAR */
+.driver-card::after {
+  content: "🚗";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.driver-card:hover::after {
+  transform: translateY(-5px) scale(1.2);
+}
+
+/* 🧠 HOVER DEPTH */
+.driver-card:hover {
+  transform: translateY(-12px) rotateX(4deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* ===== DRIVER NAME ===== */
+.driver-card h3 {
+  margin: 10px 0;
+  color: #37474f;
+  font-weight: 600;
+}
+
+/* ===== INFO ===== */
+.driver-card p {
+  font-size: 14px;
+  color: #546e7a;
+}
+
+/* ===== RATING BADGE ⭐ */
+.driver-card .rating-badge {
+  background: #fff3cd;
+  color: #ff9800;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: inline-block;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* ===== CITY BADGE 📍 */
+.driver-card .city-badge {
+  background: #e1f5fe;
+  color: #0288d1;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: inline-block;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* ===== VEHICLE TAG ===== */
+.vehicle-item {
+  background: #f1f8e9;
+  padding: 4px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 3px;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+.vehicle-item:hover {
+  background: #c5e1a5;
+  transform: scale(1.05);
+}
+
+/* ===== BUTTON ===== */
+.driver-card .book-btn {
+  margin-top: 14px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #64b5f6, #42a5f5);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.driver-card .book-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 5px 15px rgba(66,165,245,0.4);
+}
+
+/* ===== SELECTED CARD ===== */
+.driver-card.selected {
+  border: 2px solid #66bb6a;
+  box-shadow: 0 0 25px rgba(102,187,106,0.6);
+}
+
+/* ===== NEAREST DRIVER ===== */
+.driver-card.nearest {
+  border: 2px solid #ffb74d;
+  box-shadow: 0 0 25px rgba(255,183,77,0.6);
+}
+/* ===== MAP ===== */
+.map-container {
+  flex: 1;
+}
+
+#map {
+  height: 100%;
+  min-height: 500px;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .map-container {
+    order: -1;
+  }
+}
+.suggestion-list {
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  margin-top: 5px;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+  padding: 0;
+}
+
+.suggestion-list li {
+  list-style: none;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-list li:hover {
+  background: #e3f2fd;
+}
+
+.input-group {
+  position: relative;
+}
+/* 🔥 Book Ride Button */
+.btn-book {
+  width: 100%;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ✨ Hover Effect */
+.btn-book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, #218838, #17a2b8);
+}
+
+/* 🔽 Click Effect */
+.btn-book:active {
+  transform: scale(0.97);
+}
+
+/* 🚫 Disabled State */
+.btn-book:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

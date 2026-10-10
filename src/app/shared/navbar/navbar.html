@@ -1,0 +1,21 @@
+<nav class="nav" [class.scrolled]="isScrolled">
+  <div class="logo">🚗 Smart RideShare</div>
+
+  <div class="links">
+    <!-- 🌙 Theme Toggle -->
+    <button class="theme-toggle" (click)="toggleTheme()">
+      {{ isDark ? '☀️' : '🌙' }}
+    </button>
+
+    <!-- 🔐 AUTH BUTTONS -->
+    <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+
+    <a *ngIf="!isLoggedIn" routerLink="/register" class="btn">
+      Get Started
+    </a>
+
+    <a *ngIf="isLoggedIn" (click)="logout()" class="btn">
+      Logout
+    </a>
+  </div>
+</nav>

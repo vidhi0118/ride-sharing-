@@ -1,0 +1,80 @@
+{
+  "Gujarat": {
+    "Ahmedabad": {
+      "Navrangpura": { "lat": 23.0362, "lng": 72.5611 },
+      "Bopal": { "lat": 23.0395, "lng": 72.4671 },
+      "Maninagar": { "lat": 22.9985, "lng": 72.6042 },
+      "Satellite": { "lat": 23.0304, "lng": 72.5178 },
+      "Ghatlodia": { "lat": 23.0686, "lng": 72.5423 }
+    },
+
+    "Surat": {
+      "Adajan": { "lat": 21.1959, "lng": 72.7933 },
+      "Varachha": { "lat": 21.2250, "lng": 72.8847 },
+      "Katargam": { "lat": 21.2312, "lng": 72.8311 },
+      "Vesu": { "lat": 21.1435, "lng": 72.7717 },
+      "Piplod": { "lat": 21.1595, "lng": 72.7703 }
+    },
+
+    "Vadodara": {
+      "Alkapuri": { "lat": 22.3072, "lng": 73.1812 },
+      "Manjalpur": { "lat": 22.2713, "lng": 73.1966 },
+      "Gotri": { "lat": 22.3211, "lng": 73.1235 },
+      "Waghodia Road": { "lat": 22.3320, "lng": 73.2424 }
+    },
+
+    "Rajkot": {
+      "Kalawad Road": { "lat": 22.2916, "lng": 70.7932 },
+      "University Road": { "lat": 22.3039, "lng": 70.8022 },
+      "Mavdi": { "lat": 22.2600, "lng": 70.7833 }
+    },
+
+    "Gandhinagar": {
+      "Sector 21": { "lat": 23.2156, "lng": 72.6369 },
+      "Sector 11": { "lat": 23.2234, "lng": 72.6492 },
+      "Kudasan": { "lat": 23.1925, "lng": 72.6266 }
+    },
+
+    "Navsari": {
+      "Navsari City": { "lat": 20.9467, "lng": 72.9520 },
+      "Chikhli Road": { "lat": 20.9608, "lng": 72.9376 },
+      "Gandevi": { "lat": 20.8125, "lng": 72.9981 },
+      "Kabilpore": { "lat": 20.9754, "lng": 72.9347 },
+      "Dandi": { "lat": 20.8719, "lng": 72.8044 }
+    },
+
+    "Chikhli": {
+      "Chikhli Town": { "lat": 20.7575, "lng": 73.0627 },
+      "Bamanvel": { "lat": 20.7443, "lng": 73.0401 },
+      "Vansda Road": { "lat": 20.7692, "lng": 73.0784 },
+      "Rankuva": { "lat": 20.7801, "lng": 73.0325 }
+    },
+
+    "Valsad": {
+      "Valsad City": { "lat": 20.5992, "lng": 72.9342 },
+      "Dharampur": { "lat": 20.5365, "lng": 73.1732 },
+      "Pardi": { "lat": 20.5082, "lng": 72.9467 },
+      "Atul": { "lat": 20.5814, "lng": 72.9092 },
+      "Tithal": { "lat": 20.6115, "lng": 72.9062 }
+    },
+
+    "Vapi": {
+      "Vapi City": { "lat": 20.3893, "lng": 72.9106 },
+      "GIDC": { "lat": 20.3711, "lng": 72.9176 },
+      "Chala": { "lat": 20.4031, "lng": 72.9235 },
+      "Gunjan": { "lat": 20.3916, "lng": 72.9191 },
+      "Daman Road": { "lat": 20.3774, "lng": 72.8953 }
+    },
+
+    "Anand": {
+      "Vallabh Vidyanagar": { "lat": 22.5525, "lng": 72.9233 },
+      "Anand Town": { "lat": 22.5645, "lng": 72.9289 },
+      "Karamsad": { "lat": 22.5420, "lng": 72.9042 }
+    },
+
+    "Junagadh": {
+      "Kalva Chowk": { "lat": 21.5222, "lng": 70.4579 },
+      "Joshipura": { "lat": 21.5413, "lng": 70.4625 }
+    }
+  }
+}

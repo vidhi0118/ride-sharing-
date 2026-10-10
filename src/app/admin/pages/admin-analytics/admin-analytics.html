@@ -1,0 +1,66 @@
+<div class="analytics-wrapper">
+
+  <h2>🚀 Admin Analytics</h2>
+
+  <!-- FILTER -->
+  <div class="filters">
+    <select [(ngModel)]="filterDays" (change)="loadAnalytics()">
+      <option [value]="7">Last 7 Days</option>
+      <option [value]="30">Last 30 Days</option>
+    </select>
+
+    <!-- 🔥 PDF BUTTON -->
+    <button (click)="exportPDF()">📄 Export PDF</button>
+  </div>
+
+  <!-- 🔥 WRAP FOR PDF -->
+  <div id="analyticsContent">
+
+    <!-- STATS -->
+    <div class="stats">
+
+      <div class="card">
+        <h3>₹{{ totalRevenue }}</h3>
+        <p>Revenue</p>
+      </div>
+
+      <div class="card">
+        <h3>{{ totalRides }}</h3>
+        <p>Rides</p>
+      </div>
+
+      <div class="card">
+        <h3>{{ totalUsers }}</h3>
+        <p>Users</p>
+      </div>
+
+      <div class="card">
+        <h3>{{ cancelRate }}%</h3>
+        <p>Cancellation Rate</p>
+      </div>
+
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts">
+
+      <div class="chart">
+        <h3>Revenue Trend</h3>
+        <canvas id="revChart"></canvas>
+      </div>
+
+      <div class="chart">
+        <h3>Ride Trend</h3>
+        <canvas id="rideChart"></canvas>
+      </div>
+
+      <div class="chart">
+        <h3>Status Breakdown</h3>
+        <canvas id="pieChart"></canvas>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

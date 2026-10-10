@@ -1,0 +1,34 @@
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <!-- Lock Icon -->
+    <div class="icon">
+      🔒
+    </div>
+
+    <h2>Admin Login</h2>
+    <p class="subtitle">Admin Access Only</p>
+
+    <input
+      type="text"
+      placeholder="Admin Username"
+      [(ngModel)]="username"
+    />
+
+    <input
+      type="password"
+      placeholder="Admin Password"
+      [(ngModel)]="password"
+    />
+
+    <button
+      (click)="login()"
+      [disabled]="!username || !password"
+    >
+      Login
+    </button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+  </div>
+</div>

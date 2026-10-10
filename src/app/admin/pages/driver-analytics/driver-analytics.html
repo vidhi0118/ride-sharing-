@@ -1,0 +1,44 @@
+<div class="analytics-wrapper">
+
+  <h2>📊 Driver Analytics</h2>
+
+  <!-- FILTER -->
+  <div class="filters">
+
+    <select [(ngModel)]="selectedDriver">
+      <option value="">Select Driver</option>
+      <option *ngFor="let d of drivers" [value]="d.id">
+        {{ d.name }}
+      </option>
+    </select>
+
+    <select [(ngModel)]="filterDays">
+      <option [value]="7">Last 7 Days</option>
+      <option [value]="30">Last 30 Days</option>
+    </select>
+
+    <button (click)="loadAnalytics()">Load</button>
+
+  </div>
+
+  <!-- CHARTS -->
+  <div class="charts">
+
+    <div class="card">
+      <h3>💰 Earnings</h3>
+      <canvas id="earningsChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>📈 Trend</h3>
+      <canvas id="rideChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>🥧 Ride Status</h3>
+      <canvas id="pieChart"></canvas>
+    </div>
+
+  </div>
+
+</div>

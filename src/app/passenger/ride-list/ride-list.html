@@ -1,0 +1,92 @@
+<app-passenger-navbar></app-passenger-navbar>
+
+<div class="container">
+
+  <h2>🚗 Available Rides</h2>
+
+  <div class="filters">
+    <input type="text" placeholder="From" [(ngModel)]="from" (input)="applyFilters()">
+    <input type="text" placeholder="To" [(ngModel)]="to" (input)="applyFilters()">
+    <input type="date" [(ngModel)]="date" (change)="applyFilters()">
+    <button class="clear" (click)="clearFilters()">Clear</button>
+  </div>
+
+  <p *ngIf="loading">Loading rides...</p>
+
+  <p *ngIf="!loading && filteredRides.length === 0">
+    No rides found 🚫
+  </p>
+
+  <div class="ride-grid" *ngIf="!loading">
+
+    <div class="ride-card" *ngFor="let ride of filteredRides">
+
+      <span class="expired" *ngIf="ride.isExpired">Expired</span>
+
+      <h3>{{ ride.from }} ➝ {{ ride.to }}</h3>
+
+      <!-- ✅ Ride Type Badge -->
+      <span class="ride-type-badge">
+        {{ ride.rideType | titlecase }}
+      </span>
+
+      <p>👤 Driver: <b>{{ ride.driverName }}</b></p>
+      <p>⭐ Rating: {{ ride.driverRating }} / 5</p>
+
+      <!-- ✅ Show Date & Time Only For One-Time -->
+      <p *ngIf="ride.rideType === 'one-time'">
+        📅 {{ ride.date }}
+      </p>
+
+      <p *ngIf="ride.rideType === 'one-time'">
+        ⏰ {{ ride.startTime }} - {{ ride.endTime }}
+      </p>
+
+      <p *ngIf="ride.rideType !== 'one-time'">
+        🔁 Recurring Ride
+      </p>
+
+      <p>📏 {{ ride.distance | number:'1.0-1' }} km</p>
+      <p>⏱ {{ ride.estimatedTime | number:'1.1-1' }} hrs</p>
+
+      <!-- ✅ Seat Structure Improved -->
+      <p>
+        💺 Seats: {{ ride.availableSeats }} / {{ ride.maxPassengers }}
+      </p>
+
+      <!-- ✅ Low Seat Warning -->
+      <p *ngIf="ride.availableSeats <= 2 && ride.availableSeats > 0" class="low-seats">
+        ⚠ Few seats left!
+      </p>
+
+      <p>🎒 Luggage: {{ ride.luggageAllowed ? 'Allowed' : 'Not Allowed' }}</p>
+      <p>🚻 Preference: {{ ride.genderPreference }}</p>
+
+      <p class="price">₹ {{ ride.price }}</p>
+
+      <button
+        class="book-btn"
+        [disabled]="
+          ride.availableSeats <= 0 ||
+          bookedRideIds.has(ride.id) ||
+          bookingRideId === ride.id ||
+          ride.isExpired
+        "
+        (click)="bookRide(ride)"
+      >
+        {{
+          ride.isExpired
+            ? 'Ride Expired'
+            : bookedRideIds.has(ride.id)
+              ? 'Already Booked'
+              : bookingRideId === ride.id
+                ? 'Booking...'
+                : 'Book Ride'
+        }}
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

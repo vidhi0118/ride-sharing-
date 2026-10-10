@@ -1,0 +1,46 @@
+<app-passenger-navbar></app-passenger-navbar>
+
+<div class="search-container">
+
+  <h1>Find a Ride</h1>
+  <p class="subtitle">Select your route to see available rides</p>
+
+  <div class="search-card">
+
+    <label>Start Point</label>
+    <select [(ngModel)]="startPoint">
+      <option value="">Select start location</option>
+      <option *ngFor="let loc of flatLocations" [value]="loc">
+        {{ loc }}
+      </option>
+    </select>
+
+    <label>End Point</label>
+    <select [(ngModel)]="endPoint">
+      <option value="">Select destination</option>
+      <option *ngFor="let loc of flatLocations" [value]="loc">
+        {{ loc }}
+      </option>
+    </select>
+
+    <button class="swap-btn" (click)="swapLocations()">🔄 Swap</button>
+
+    <label>Vehicle Type (optional)</label>
+    <select [(ngModel)]="vehicleType">
+      <option value="">Any</option>
+      <option *ngFor="let v of vehicles" [value]="v">
+        {{ v }}
+      </option>
+    </select>
+
+    <button class="find-btn" (click)="findRide()">
+      Find Ride
+    </button>
+
+    <p *ngIf="sameLocationError" class="error">
+      ❌ Start and End location cannot be the same
+    </p>
+
+  </div>
+
+</div>

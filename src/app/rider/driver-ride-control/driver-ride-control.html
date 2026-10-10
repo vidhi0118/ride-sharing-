@@ -1,0 +1,24 @@
+<div class="ride-control-card">
+
+<h3>Ride Control</h3>
+
+<p><strong>From:</strong> {{rideData?.from}}</p>
+<p><strong>To:</strong> {{rideData?.to}}</p>
+
+<button class="start-btn"
+        *ngIf="rideData?.status==='accepted'"
+        (click)="startRide()">
+
+Start Ride 🚗
+
+</button>
+
+<button class="end-btn"
+        *ngIf="rideData?.status==='started'"
+        (click)="endRide()">
+
+End Ride 🏁
+
+</button>
+
+</div>

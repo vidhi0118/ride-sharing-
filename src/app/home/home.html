@@ -1,0 +1,172 @@
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h2>SmartRide</h2>
+
+  <div *ngIf="!isLoggedIn">
+    <button class="btn" (click)="goToLogin()">Login</button>
+<button class="btn primary" (click)="goToRegister()">Register</button>
+  </div>
+
+  <div *ngIf="isLoggedIn">
+    <span>{{ userName }}</span>
+    <button class="btn" (click)="logout()">Logout</button>
+  </div>
+</nav>
+
+<section class="hero-video">
+
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="assets/hero.mp4" type="video/mp4">
+  </video>
+
+  <!-- OVERLAY -->
+  <div class="overlay"></div>
+
+  <!-- CONTENT -->
+  <div class="hero-container">
+
+    <h1>
+      Find Drivers Near You
+    </h1>
+
+    <!-- MARQUEE -->
+    <div class="marquee-text">
+      <div class="marquee-track">
+        <span>🚗 Verified Drivers</span>
+        <span>💰 Affordable Rides</span>
+        <span>⚡ Instant Booking</span>
+        <span>🛡️ Safe Travel</span>
+
+        <span>🚗 Verified Drivers</span>
+        <span>💰 Affordable Rides</span>
+      </div>
+    </div>
+
+    <p>Safe • Verified • Affordable rides</p>
+
+    <button class="btn primary" (click)="goToDrivers()">
+      View Drivers
+    </button>
+
+    <div class="sparkles">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+  </div>
+
+</section>
+
+
+<!-- ACTION CARDS -->
+<section class="action-section">
+
+  <div class="action-card" (click)="goToDrivers()">
+    🚗
+    <h3>View Drivers</h3>
+    <p>Find nearby drivers instantly</p>
+  </div>
+
+  <div class="action-card" (click)="goToMap()">
+  🗺️
+  <h3>Live Map</h3>
+  <p>See all drivers on map</p>
+</div>
+
+  <div class="action-card">
+    ⚡
+    <h3>Quick Booking</h3>
+    <p>Book rides in seconds</p>
+  </div>
+
+</section>
+
+
+
+
+
+<!-- FEATURES -->
+<section class="features">
+
+  <h2>Why Choose SmartRide</h2>
+
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      🛡️
+      <h4>Safe Travel</h4>
+      <p>Verified drivers with secure rides</p>
+    </div>
+
+    <div class="feature-card">
+      💰
+      <h4>Affordable</h4>
+      <p>Best price for daily commute</p>
+    </div>
+
+    <div class="feature-card">
+      ⚡
+      <h4>Fast Booking</h4>
+      <p>Get a ride in seconds</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DRIVER SCROLL -->
+<section class="drivers-section">
+
+  <h2>Nearby Drivers</h2>
+
+  <div class="driver-scroll">
+
+    <div class="driver-card" *ngFor="let d of drivers">
+
+      <img [src]="d.photoUrl || 'https://via.placeholder.com/300'">
+
+      <h4>{{ d.name }}</h4>
+      <p>{{ d.defaultVehicle }}</p>
+
+      <div class="rating">
+        ⭐ {{ d.avgRating }} ({{ d.ratingCount }})
+      </div>
+
+      <button class="btn small" (click)="viewDriver(d)">View</button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="footer-grid">
+
+    <div>
+      <h3>SmartRide</h3>
+      <p>Safe • Affordable • Verified</p>
+    </div>
+
+    <div>
+      <h4>Contact</h4>
+      <p>Email: support@smartride.com</p>
+      <p>Phone: +91 98765 43210</p>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <p>Home</p>
+      <p>Drivers</p>
+      <p>About</p>
+    </div>
+
+  </div>
+
+  <p class="copyright">© 2026 SmartRide</p>
+
+</footer>

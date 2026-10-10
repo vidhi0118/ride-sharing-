@@ -1,0 +1,143 @@
+<div class="register-bg">
+<div class="register-card">
+
+  <!-- 🔙 Back Button -->
+  <div class="card-top">
+    <button class="back-btn" (click)="goToLogin()">
+      ← Back
+    </button>
+  </div>
+<div class="error-box" *ngIf="generalError">
+  {{ generalError }}
+</div>
+
+  <h2>Create Account</h2>
+  <p class="subtitle">Secure registration for safe rides</p>
+
+  <!-- ✅ SUCCESS MESSAGE -->
+  <div *ngIf="isRegistered" class="success-box">
+    <div class="checkmark">✔</div>
+    <p>{{ successMessage }}</p>
+    <small>Redirecting to login...</small>
+  </div>
+
+  <!-- 📝 FORM -->
+  <form *ngIf="!isRegistered" (ngSubmit)="register()">
+
+    <!-- Full Name -->
+    <input
+      type="text"
+      placeholder="Full Name"
+      [(ngModel)]="name"
+      name="name"
+      (blur)="validateName()">
+    <div class="error" *ngIf="nameError">{{ nameError }}</div>
+
+    <!-- Email -->
+    <input
+  type="email"
+  placeholder="Email Address"
+  [(ngModel)]="email"
+  name="email"
+  (input)="clearGeneralError()"
+  required>
+
+
+    <!-- Phone -->
+    <input
+      type="text"
+      placeholder="Phone Number"
+      [(ngModel)]="phone"
+      name="phone"
+      maxlength="10"
+      (blur)="validatePhone()">
+    <div class="error" *ngIf="phoneError">{{ phoneError }}</div>
+
+    <!-- 🔐 Password with Toggle -->
+    <div class="password-wrapper">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder="Password"
+        [(ngModel)]="password"
+        name="password"
+        (blur)="validatePassword()">
+
+      <span class="toggle-icon" (click)="togglePassword()">
+        {{ showPassword ? '🙈' : '👁️' }}
+      </span>
+    </div>
+    <div class="error" *ngIf="passwordError">{{ passwordError }}</div>
+
+    <!-- Aadhaar -->
+    <input
+      type="text"
+      placeholder="Aadhaar Card Number"
+      [(ngModel)]="aadhaar"
+      name="aadhaar"
+      maxlength="12"
+      (input)="onAadhaarInput($event)">
+    <div class="error" *ngIf="aadhaarError">
+      Aadhaar must be exactly 12 digits
+    </div>
+
+    <!-- Verify Button -->
+    <button
+      type="button"
+      class="verify-btn"
+      (click)="verifyAadhaar()"
+      [disabled]="verifying || aadhaarVerified">
+      {{ verifying ? 'Verifying...' :
+         aadhaarVerified ? 'Verified' : 'Verify Aadhaar' }}
+    </button>
+
+    <div *ngIf="aadhaarVerified" class="verified-msg">
+      ✔ Aadhaar verified successfully
+    </div>
+
+    <!-- Role Selection -->
+    <div class="role">
+      <label>
+        <input
+          type="radio"
+          value="passenger"
+          [(ngModel)]="role"
+          name="role">
+        Passenger
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          value="driver"
+          [(ngModel)]="role"
+          name="role">
+        Driver
+      </label>
+    </div>
+    <!-- Profile Photo Upload -->
+<div class="photo-upload">
+  <label>Upload Profile Photo</label>
+  <div class="custom-file">
+    <input type="file" accept="image/*" (change)="onFileSelected($event)">
+    <span>Select Image</span>
+  </div>
+</div>
+    <!-- Submit -->
+    <button
+      type="submit"
+      class="submit-btn"
+      [disabled]="loading || !canRegister()">
+      {{ loading ? 'Creating Account...' : 'Create Account' }}
+    </button>
+
+
+    <!-- 🔗 Login Link -->
+    <p class="login-link">
+      Already have an account?
+      <a routerLink="/login">Login Here</a>
+    </p>
+
+  </form>
+
+</div>
+</div>

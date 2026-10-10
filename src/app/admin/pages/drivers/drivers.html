@@ -1,0 +1,60 @@
+<div class="drivers-wrapper">
+
+  <h2>🚗 Drivers</h2>
+
+  <!-- SEARCH -->
+  <input
+    type="text"
+    placeholder="Search driver..."
+    [(ngModel)]="searchText"
+    (input)="applySearch()"
+  />
+
+  <div class="leaderboard">
+  <h3>🏆 Top Drivers</h3>
+
+  <div class="leaderboard-item" *ngFor="let d of topDrivers; let i = index">
+    <span>#{{ i + 1 }}</span>
+    <span>{{ d.name }}</span>
+    <span>{{ d.totalRides }} rides</span>
+  </div>
+</div>
+
+  <!-- DRIVER LIST -->
+  <div class="driver-list">
+
+    <div class="driver-card" *ngFor="let d of filteredDrivers">
+
+      <!-- PROFILE -->
+      <div class="profile">
+        <img [src]="d.photo" />
+        <div>
+          <h3>{{ d.name }}</h3>
+          <p>{{ d.email }}</p>
+          <p>📍 {{ d.city }}</p>
+        </div>
+      </div>
+
+      <!-- INFO -->
+      <div class="info">
+        <p>🚗 {{ d.vehicle }}</p>
+        <p>📊 Rides: {{ d.totalRides }}</p>
+        <p>💰 ₹{{ d.earnings }}</p>
+        <p>⭐ Rating: {{ d.rating }}</p>
+      </div>
+
+      <button (click)="viewHistory(d)">History</button>
+      <br>
+      <!-- ACTION -->
+      <button
+        [class.blocked]="d.blocked"
+        (click)="toggleBlock(d)"
+      >
+        {{ d.blocked ? 'Unblock' : 'Block' }}
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

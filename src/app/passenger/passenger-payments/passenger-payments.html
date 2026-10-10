@@ -1,0 +1,52 @@
+
+
+<h2>My Payments</h2>
+
+<table>
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Amount</th>
+    <th>Status</th>
+    <th>Payment</th>
+  </tr>
+
+  <tr *ngFor="let p of payments">
+    <td>{{ p.from }}</td>
+    <td>{{ p.to }}</td>
+    <td>₹{{ p.fare }}</td>
+
+    <td>{{ p.status }}</td>
+
+    <td>
+      <span
+        [ngClass]="{
+          'paid': p.paymentStatus === 'paid',
+          'refunded': p.paymentStatus === 'refunded',
+          'pending': p.paymentStatus === 'pending'
+        }"
+      >
+        {{ p.paymentStatus }}
+      </span>
+    </td>
+    <td *ngIf="p.penalty > 0">
+  💸 ₹{{ p.penalty }}
+</td>
+
+<td *ngIf="p.status === 'cancelled'">
+  🔁 Refund: ₹{{ p.fare - (p.penalty || 0) }}
+</td>
+  </tr>
+</table>
+
+
+
+<!-- 🔥 Penalty Rules -->
+<div class="penalty-info">
+  <h4>⚠️ Cancellation Policy</h4>
+  <ul>
+    <li>> 24 hrs before ride → ₹0 penalty</li>
+    <li>6–24 hrs before ride → ₹50 penalty</li>
+    <li>< 6 hrs before ride → ₹100 penalty</li>
+  </ul>
+</div>

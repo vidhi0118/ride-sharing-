@@ -1,0 +1,39 @@
+<h2>📌 My Ride Requests</h2>
+
+<p *ngIf="requests.length === 0">No requests yet 🚫</p>
+
+<div class="card" *ngFor="let r of requests">
+
+  <h4><b>{{ r.from }} ➝ {{ r.to }}</b></h4>
+
+  <p>
+    📅 {{ r.rideDate }} | ⏰ {{ r.rideTime }}
+  </p>
+
+  <p>
+    Status:
+    <b [style.color]="getStatusColor(r.status)">
+      {{ r.status | uppercase }}
+    </b>
+  </p>
+
+  <!-- 🔥 Expired Message -->
+  <div *ngIf="r.status === 'expired'" class="expired-box">
+    🚫 Driver did not respond within 6 hours.
+    Please find another driver.
+  </div>
+
+  <!-- ✅ Accepted Message -->
+  <div *ngIf="r.status === 'accepted'" class="accepted-box">
+    🎉 Your ride has been accepted!
+  </div>
+
+  <button
+  *ngIf="r.status === 'pending'"
+  class="cancel-btn"
+  (click)="cancelRequest(r)"
+>
+  ❌ Cancel Request
+</button>
+
+</div>

@@ -1,0 +1,84 @@
+<app-passenger-navbar></app-passenger-navbar>
+
+<div class="container">
+
+  <h2>🚗 Ride History</h2>
+
+  <p *ngIf="loading">Loading...</p>
+
+  <div *ngFor="let r of rides" class="card">
+
+    <!-- DRIVER -->
+    <div class="driver">
+      <img [src]="getDriverPhoto(r)" class="driver-img" />
+      <div>
+        <h4>{{ r.driver?.name }}</h4>
+        <p>{{ r.driver?.defaultVehicle }}</p>
+      </div>
+    </div>
+
+    <!-- ROUTE -->
+    <div class="route">
+      {{ getShortLocation(r.from) }} → {{ getShortLocation(r.to) }}
+    </div>
+
+    <!-- DETAILS -->
+    <div class="details">
+
+      <p>📅 {{ formatRideDate(r) }}</p>
+      <p>⏰ {{ r.rideTime }}</p>
+      <p>💰 ₹{{ r.payableAmount }}</p>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline">
+      <p>📌 {{ formatTime(r.createdAt) }}</p>
+      <p *ngIf="r.startedAt">🚗 {{ formatTime(r.startedAt) }}</p>
+      <p *ngIf="r.completedAt">🏁 {{ formatTime(r.completedAt) }}</p>
+    </div>
+
+    <!-- ⭐ RATING -->
+    <div *ngIf="r.status === 'completed'" class="rating-box">
+
+      <div *ngIf="r.rating" class="given-rating">
+        ⭐ You rated: {{ r.rating }}/5
+      </div>
+
+      <div *ngIf="!r.rating">
+        <span>Rate Driver:</span>
+
+        <span
+          *ngFor="let s of stars"
+          (click)="submitRating(r, s)"
+          class="star">
+          ★
+        </span>
+      </div>
+      <p *ngIf="r.penalty > 0">
+  💸 Penalty: ₹{{ r.penalty }}
+</p>
+    </div>
+
+    <!-- STATUS -->
+    <span [class]="getStatusClass(r.status)">
+      {{ r.status }}
+    </span>
+
+    <!-- ACTION -->
+    <div class="actions">
+      <button class="track" (click)="trackRide(r)">
+        Track
+      </button>
+
+      <button
+  *ngIf="r.status === 'accepted'"
+  class="cancel-btn"
+  (click)="cancelBooking(r)"
+>
+  ❌ Cancel Ride
+</button>
+    </div>
+
+  </div>
+
+</div>

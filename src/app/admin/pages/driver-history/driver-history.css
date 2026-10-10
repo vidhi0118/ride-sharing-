@@ -1,0 +1,23 @@
+.history-wrapper {
+  padding: 20px;
+  background: #f5f7fb;
+}
+
+.ride-card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.ride-card:hover {
+  transform: translateY(-4px);
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

@@ -1,0 +1,74 @@
+<app-passenger-navbar> </app-passenger-navbar>
+<div class="container py-5">
+
+  <div class="card-modern route-card">
+
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-success">Set Your Route</h2>
+      <p class="text-muted">Choose pickup and destination to continue</p>
+    </div>
+
+    <!-- START LOCATION -->
+    <div class="mb-3 position-relative">
+      <label class="form-label fw-semibold text-success">
+        Pickup Location
+      </label>
+
+      <input
+        type="text"
+        class="form-control modern-input"
+        [(ngModel)]="startQuery"
+        (input)="searchLocation(startQuery, 'start')"
+        placeholder="Enter pickup location" />
+
+      <ul class="suggestion-list"
+          *ngIf="startSuggestions.length">
+        <li *ngFor="let loc of startSuggestions"
+            (click)="selectLocation(loc, 'start')">
+          {{ loc.display_name }}
+        </li>
+      </ul>
+    </div>
+  <br>
+    <!-- END LOCATION -->
+    <div class="mb-3 position-relative">
+      <label class="form-label fw-semibold text-success">
+        Destination
+      </label>
+
+      <input
+        type="text"
+        class="form-control modern-input"
+        [(ngModel)]="endQuery"
+        (input)="searchLocation(endQuery, 'end')"
+        placeholder="Enter destination" />
+
+      <ul class="suggestion-list"
+          *ngIf="endSuggestions.length">
+        <li *ngFor="let loc of endSuggestions"
+            (click)="selectLocation(loc, 'end')">
+          {{ loc.display_name }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- ROUTE INFO -->
+    <div class="route-info mt-4"
+         *ngIf="distanceText">
+      <h5 class="fw-bold text-success">Ride Details</h5>
+      <p class="mb-1">
+        <strong>Distance:</strong> {{ distanceText }}
+      </p>
+    </div>
+
+    <!-- BUTTON -->
+    <div class="text-center mt-4">
+      <button class="btn btn-green btn-lg"
+              (click)="bookRide()">
+        🚗 Book Ride
+      </button>
+    </div>
+
+  </div>
+
+</div>

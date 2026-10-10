@@ -1,0 +1,94 @@
+<div class="card">
+  <h2>Add Ride (Gujarat)</h2>
+
+  <div class="grid">
+    <div>
+      <label>From District</label>
+      <select [(ngModel)]="fromDistrict" (change)="onFromDistrictChange()">
+        <option value="">Select</option>
+        <option *ngFor="let d of districts" [value]="d">{{ d }}</option>
+      </select>
+
+      <label>From Village</label>
+      <select [(ngModel)]="fromVillage" (change)="calculate()">
+        <option value="">Select</option>
+        <option *ngFor="let v of fromVillages" [value]="v">{{ v }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label>To District</label>
+      <select [(ngModel)]="toDistrict" (change)="onToDistrictChange()">
+        <option value="">Select</option>
+        <option *ngFor="let d of districts" [value]="d">{{ d }}</option>
+      </select>
+
+      <label>To Village</label>
+      <select [(ngModel)]="toVillage" (change)="calculate()">
+        <option value="">Select</option>
+        <option *ngFor="let v of toVillages" [value]="v">{{ v }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="result" *ngIf="distance">
+    📏 <b>{{ distance | number:'1.0-2' }} km</b> |
+    ⏱ <b>{{ estimatedTime | number:'1.1-1' }} hrs</b>
+  </div>
+</div>
+
+<!-- Availability -->
+<div class="card">
+  <h3>Ride Availability</h3>
+
+  <label><input type="radio" value="one-time" [(ngModel)]="rideType"> One-time Ride</label>
+  <label><input type="radio" value="daily" [(ngModel)]="rideType"> Repeat Daily</label>
+  <label><input type="radio" value="weekend" [(ngModel)]="rideType"> Weekend Only</label>
+
+  <div *ngIf="rideType === 'one-time'" class="grid">
+    <div>
+      <label>Date</label>
+      <input type="date" [(ngModel)]="rideDate">
+    </div>
+    <div>
+      <label>Start Time</label>
+      <input type="time" [(ngModel)]="startTime">
+    </div>
+    <div>
+      <label>End Time</label>
+      <input type="time" [(ngModel)]="endTime">
+    </div>
+  </div>
+</div>
+
+<!-- Preferences -->
+<div class="card">
+  <h3>Ride Preferences</h3>
+
+  <label>Max Passengers</label>
+  <input type="number" min="1" max="4" [(ngModel)]="maxPassengers">
+
+  <label>
+    <input type="checkbox" [(ngModel)]="luggageAllowed">
+    Luggage Allowed
+  </label>
+
+  <label>Gender Preference</label>
+  <select [(ngModel)]="genderPreference">
+    <option value="any">Any</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+</div>
+
+<!-- 💰 PRICE -->
+<div class="card">
+  <h3>Ride Price</h3>
+
+  <label>Total Price (₹)</label>
+  <input type="number" min="0" [(ngModel)]="price" placeholder="Enter total ride price">
+</div>
+
+<div style="text-align:center;">
+  <button class="add-btn" (click)="addRide()">Add Ride</button>
+</div>

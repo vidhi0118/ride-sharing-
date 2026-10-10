@@ -1,0 +1,101 @@
+<div class="dashboard-wrapper">
+
+  <!-- ================= HEADER ================= -->
+  <div class="dashboard-header">
+    <h1>Admin Dashboard</h1>
+    <p>Overview of platform statistics</p>
+  </div>
+
+  <!-- ================= STATS ================= -->
+  <div class="stats-grid">
+
+    <div class="stat-card users">
+      <div class="icon">👥</div>
+      <div class="stat-info">
+        <h2>{{ users }}</h2>
+        <p>Total Users</p>
+      </div>
+    </div>
+
+    <div class="stat-card rides">
+      <div class="icon">🚗</div>
+      <div class="stat-info">
+        <h2>{{ rides }}</h2>
+        <p>Total Rides</p>
+      </div>
+    </div>
+
+    <div class="stat-card bookings">
+      <div class="icon">📄</div>
+      <div class="stat-info">
+        <h2>{{ bookings }}</h2>
+        <p>Total Bookings</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= FILTER ================= -->
+  <div class="filters">
+    <button (click)="applyFilter('all')">All</button>
+    <button (click)="applyFilter('today')">Today</button>
+    <button (click)="applyFilter('week')">7 Days</button>
+    <button (click)="applyFilter('month')">30 Days</button>
+  </div>
+
+  <!-- ================= CHARTS ================= -->
+  <div class="charts-grid">
+
+    <!-- 🥧 RIDE STATUS -->
+    <div class="chart-card">
+      <h3>Ride Status</h3>
+      <canvas id="pieChart"></canvas>
+    </div>
+
+    <!-- 📈 MONTHLY TREND -->
+    <div class="chart-card">
+      <h3>Monthly Ride Trend</h3>
+      <canvas id="lineChart"></canvas>
+    </div>
+
+    <!-- 💰 REVENUE -->
+    <div class="chart-card">
+      <h3>Revenue Chart</h3>
+      <canvas id="revenueChart"></canvas>
+    </div>
+
+    <!-- 📊 DAILY COMPLETED -->
+    <div class="chart-card">
+      <h3>Daily Completed Rides</h3>
+      <canvas id="dailyChart"></canvas>
+    </div>
+
+    <!-- 👥 ACTIVE USERS -->
+    <div class="chart-card">
+      <h3>Active Users</h3>
+      <canvas id="userChart"></canvas>
+    </div>
+
+  </div>
+
+  <!-- ================= TOP DRIVERS ================= -->
+  <div class="top-driver-card" *ngIf="topDrivers.length">
+
+    <h3>🏆 Top Drivers</h3>
+
+    <div class="driver-item" *ngFor="let d of topDrivers; let i = index">
+
+      <span class="rank">
+        {{ i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉' }}
+      </span>
+
+      <div class="driver-info">
+        <p><strong>{{ d.name || d.id }}</strong></p>
+        <p>{{ d.rides }} rides</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

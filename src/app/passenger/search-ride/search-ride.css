@@ -1,0 +1,67 @@
+.search-container {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.search-card {
+  background: #ffffff;
+  padding: 26px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.search-card label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.search-card select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.find-btn {
+  margin-top: 10px;
+  padding: 12px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.find-btn:hover {
+  background: #125aa0;
+}
+
+.swap-btn {
+  padding: 8px;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.swap-btn:hover {
+  background: #e0e0e0;
+}
+
+.error {
+  color: #dc2626;
+  margin-top: 8px;
+  font-size: 14px;
+}

@@ -1,0 +1,127 @@
+<app-passenger-navbar></app-passenger-navbar>
+
+<div class="container py-5">
+  <div class="card-modern ride-card">
+
+    <h2 class="text-success fw-bold mb-4 text-center">
+      Ride Preferences
+    </h2>
+
+    <!-- PASSENGERS -->
+    <div class="mb-3">
+      <label class="form-label">Number of Passengers</label>
+      <input type="number"
+             min="1"
+             [max]="getMaxCapacity(vehiclePreference)"
+             [(ngModel)]="passengersCount"
+             (ngModelChange)="onPassengerChange()"
+             class="form-control">
+    </div>
+
+    <div class="alert alert-info mt-2">
+      Max allowed: {{ getMaxCapacity(vehiclePreference) }} passengers
+    </div>
+
+    <!-- TRIP TYPE -->
+    <div class="mb-3">
+      <label class="form-label">Trip Type</label>
+      <select [(ngModel)]="tripType"
+              (ngModelChange)="onTripTypeChange()"
+              class="form-control">
+        <option value="one-way">One Way</option>
+        <option value="round-trip">Round Trip</option>
+      </select>
+    </div>
+
+    <!-- DATES -->
+    <div class="mb-3">
+      <label>Start Date</label>
+      <input type="date"
+             [(ngModel)]="fromDate"
+             (change)="validateDates()"
+             [min]="todayDate"
+             class="form-control">
+    </div>
+
+    <!-- RETURN DATE (Hidden for One Way) -->
+    <div class="mb-3" *ngIf="tripType === 'round-trip'">
+      <label>Return Date</label>
+      <input type="date"
+             [(ngModel)]="toDate"
+             (change)="validateDates()"
+             [min]="fromDate"
+             class="form-control">
+    </div>
+
+    <!-- TIME -->
+    <div class="mb-3">
+      <label class="form-label">Ride Time</label>
+      <input type="time"
+             [(ngModel)]="rideTime"
+             class="form-control">
+    </div>
+
+    <!-- VEHICLE -->
+    <div class="mb-3">
+      <label class="form-label">Vehicle Preference</label>
+      <select [(ngModel)]="vehiclePreference"
+              (ngModelChange)="onVehicleChange()"
+              class="form-control">
+        <option *ngFor="let v of recommendedVehicles"
+                [value]="v">
+          {{ v }} (Max {{ getMaxCapacity(v) }})
+        </option>
+      </select>
+    </div>
+
+    <div class="alert alert-success mt-3">
+      Estimated Trip Duration: {{ estimatedDays }} day(s)
+    </div>
+
+    <!-- LUGGAGE -->
+    <div class="mb-3">
+      <label class="form-label">Luggage Type</label>
+      <select [(ngModel)]="luggageType"
+              (ngModelChange)="calculateFare()"
+              class="form-control">
+        <option value="none">No Luggage</option>
+        <option value="light">1-2 Bags</option>
+        <option value="heavy">Heavy Luggage</option>
+      </select>
+    </div>
+
+    <!-- SPECIAL INSTRUCTIONS -->
+    <div class="mb-3">
+      <label class="form-label">Special Instructions</label>
+      <select [(ngModel)]="specialInstruction"
+              class="form-control">
+        <option value="">None</option>
+        <option value="Elderly passenger">Elderly passenger</option>
+        <option value="Child seat required">Child seat required</option>
+        <option value="AC required">AC required</option>
+        <option value="Pet allowed">Pet allowed</option>
+        <option value="Extra luggage space">Extra luggage space</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div *ngIf="specialInstruction === 'other'" class="mb-3">
+      <textarea [(ngModel)]="customInstruction"
+                class="form-control"
+                placeholder="Write your instruction here...">
+      </textarea>
+    </div>
+
+    <!-- FARE -->
+    <div class="alert alert-primary mt-3">
+      <h5>Estimated Fare</h5>
+      <h3 class="text-success">₹ {{ estimatedFare }}</h3>
+    </div>
+
+    <button class="btn btn-success w-100"
+            (click)="continueToDrivers()">
+      Confirm & Send Request →
+    </button>
+
+  </div>
+</div>

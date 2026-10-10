@@ -1,0 +1,27 @@
+<h2>Passenger Route Requests</h2>
+
+<!-- 🔔 EXACT MATCH -->
+<div *ngIf="exactMatches.length">
+  <h3>🔥 Exact Matches</h3>
+  <div *ngFor="let r of exactMatches">
+    <p>{{ r.fromArea }}, {{ r.fromDistrict }} → {{ r.toArea }}, {{ r.toDistrict }}</p>
+    <p>Vehicle: {{ r.vehicleType }}</p>
+    <button (click)="acceptRequest(r)">Accept</button>
+  </div>
+</div>
+
+<!-- 🟡 NEAR MATCH -->
+<div *ngIf="nearMatches.length">
+  <h3>⚡ Near Matches</h3>
+  <div *ngFor="let r of nearMatches">
+    <p>{{ r.fromArea }}, {{ r.fromDistrict }} → {{ r.toArea }}, {{ r.toDistrict }}</p>
+  </div>
+</div>
+
+<!-- ⚪ OTHERS -->
+<div *ngIf="otherRequests.length">
+  <h3>Other Requests</h3>
+  <div *ngFor="let r of otherRequests">
+    <p>{{ r.fromArea }} → {{ r.toArea }}</p>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<h2>🔔 Ride Booking Requests</h2>
+
+<p *ngIf="requests.length === 0">No pending requests 🚫</p>
+
+<div class="request-card" *ngFor="let r of requests">
+  <p><b>Passenger:</b> {{ r.passengerName }}</p>
+  <p>{{ r.from }} ➝ {{ r.to }}</p>
+  <p>{{ r.rideDate }} | {{ r.rideTime }}</p>
+
+  <div class="actions">
+    <button class="accept" (click)="accept(r)">Confirm</button>
+    <button class="reject" (click)="reject(r)">Reject</button>
+  </div>
+</div>

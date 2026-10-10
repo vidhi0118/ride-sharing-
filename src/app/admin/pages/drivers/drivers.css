@@ -1,0 +1,187 @@
+/* BACKGROUND */
+.drivers-wrapper {
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #020617);
+  color: white;
+  animation: fadeIn 0.6s ease;
+}
+
+/* TITLE */
+.drivers-wrapper h2 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* SEARCH BAR */
+.drivers-wrapper input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  color: white;
+  transition: 0.3s;
+}
+
+.drivers-wrapper input::placeholder {
+  color: #cbd5f5;
+}
+
+.drivers-wrapper input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
+}
+
+/* LEADERBOARD */
+.leaderboard {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.leaderboard h3 {
+  margin-bottom: 10px;
+}
+
+.leaderboard-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.leaderboard-item:hover {
+  background: rgba(56, 189, 248, 0.2);
+  transform: translateX(5px);
+}
+
+/* DRIVER GRID */
+.driver-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* DRIVER CARD */
+.driver-card {
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* GLOW BORDER EFFECT */
+.driver-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 1px;
+  background: linear-gradient(120deg, transparent, #38bdf8, transparent);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.driver-card:hover::before {
+  opacity: 1;
+}
+
+/* HOVER EFFECT */
+.driver-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* PROFILE */
+.profile {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.profile img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #38bdf8;
+}
+
+.profile h3 {
+  margin-bottom: 3px;
+}
+
+.profile p {
+  font-size: 13px;
+  color: #cbd5f5;
+}
+
+/* INFO */
+.info p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+/* BUTTONS */
+.driver-card button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+/* HISTORY BUTTON */
+.driver-card button:first-of-type {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.driver-card button:first-of-type:hover {
+  background: #0ea5e9;
+  transform: scale(1.05);
+}
+
+/* BLOCK BUTTON */
+.driver-card button:last-of-type {
+  background: #facc15;
+  color: black;
+}
+
+.driver-card button:last-of-type:hover {
+  transform: scale(1.05);
+}
+
+/* BLOCKED STATE */
+.driver-card button.blocked {
+  background: #ef4444 !important;
+  color: white;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

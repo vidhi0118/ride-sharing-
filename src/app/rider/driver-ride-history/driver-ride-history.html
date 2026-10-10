@@ -1,0 +1,51 @@
+<div class="history-card">
+
+  <h3>📜 Ride History</h3>
+
+  <div *ngIf="rides.length === 0">
+    No rides yet 🚫
+  </div>
+
+  <div class="ride-item" *ngFor="let ride of rides">
+
+  <h4>
+    {{ ride.from }} ➝ {{ ride.to }}
+  </h4>
+
+  <p>👤 Passenger: {{ ride.passengerName || 'Unknown' }}</p>
+
+  <!-- 📅 DATE -->
+  <p>
+    📅 {{ ride.fromDate }} → {{ ride.toDate }}
+  </p>
+
+  <!-- ⏰ TIME -->
+  <p>
+    ⏰ {{ ride.rideTime }}
+  </p>
+
+  <!-- 🕒 BOOKED TIME -->
+  <p *ngIf="ride.bookedAt">
+    🕒 Booked: {{ formatTime(ride.bookedAt) }}
+  </p>
+
+  <p>💰 Fare: ₹{{ ride.fare }}</p>
+
+  <p *ngIf="ride.penalty > 0">
+    💸 Penalty: ₹{{ ride.penalty }}
+  </p>
+
+  <p>
+    💵 <strong>Earning: ₹{{ ride.earning }}</strong>
+  </p>
+
+  <p>
+    Status:
+    <span [ngClass]="ride.status">
+      {{ ride.status }}
+    </span>
+  </p>
+
+</div>
+
+</div>

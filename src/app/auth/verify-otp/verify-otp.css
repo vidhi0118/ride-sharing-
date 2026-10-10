@@ -1,0 +1,145 @@
+/* FULL BACKGROUND (same as login) */
+body {
+  margin: 0;
+}
+
+.otp-card-wrapper {
+  height: 100vh;
+  width: 100%;
+  background: url('/assets/green-car.avif') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* DARK OVERLAY */
+.otp-card-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* OTP CARD (GLASS + GLOW) */
+.otp-card {
+  position: relative;
+  width: 90%;
+  max-width: 420px;
+  padding: 40px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+
+  box-shadow:
+    0 0 20px rgba(46, 204, 113, 0.6),
+    0 0 40px rgba(46, 204, 113, 0.4);
+
+  color: #fff;
+  text-align: center;
+}
+
+/* TITLE */
+h2 {
+  margin-bottom: 10px;
+}
+
+p {
+  color: #ddd;
+  font-size: 14px;
+}
+
+/* OTP BOX */
+.otp-box {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.otp-cell {
+  width: 45px;
+  height: 55px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.otp-cell.active {
+  border: 2px solid #2ecc71;
+}
+
+/* CURSOR */
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* TIMER */
+.timer {
+  margin-bottom: 10px;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #2ecc71;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #27ae60;
+  box-shadow: 0 0 10px #2ecc71;
+}
+
+/* RESEND BUTTON */
+.resend {
+  background: transparent;
+  border: 1px solid #2ecc71;
+}
+
+/* SUCCESS */
+.success-container {
+  text-align: center;
+}
+
+.checkmark {
+  font-size: 50px;
+  color: #2ecc71;
+  margin-bottom: 10px;
+}
+
+/* SHAKE ANIMATION */
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
+/* HIDDEN INPUT */
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}

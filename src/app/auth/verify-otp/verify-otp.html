@@ -1,0 +1,60 @@
+<div class="otp-card-wrapper">
+
+  <div
+    class="otp-card"
+    [class.shake]="shake"
+    (click)="focusOtpInput()"
+  >
+
+  <!-- ✅ SUCCESS ANIMATION -->
+  <div *ngIf="success" class="success-container">
+    <div class="checkmark">✓</div>
+    <p>OTP Verified</p>
+  </div>
+
+  <!-- 🔐 OTP UI -->
+  <ng-container *ngIf="!success">
+
+    <h2>OTP Verification</h2>
+    <p>Enter the 6-digit OTP sent to your email</p>
+
+    <!-- 🔐 Hidden real input -->
+    <input
+      #hiddenOtpInput
+      type="text"
+      inputmode="numeric"
+      maxlength="6"
+      class="hidden-input"
+      (input)="onOtpInput($event)"
+    />
+
+    <!-- 👁 Visual boxes -->
+    <div class="otp-box">
+      <div
+        class="otp-cell"
+        *ngFor="let i of [0,1,2,3,4,5]; let idx = index"
+        [class.active]="idx === otp.length"
+      >
+        <span *ngIf="otp[idx]">{{ otp[idx] }}</span>
+        <span *ngIf="!otp[idx] && idx === otp.length" class="cursor">|</span>
+      </div>
+    </div>
+
+    <p class="timer">⏱ {{ timer }}s remaining</p>
+
+    <button [disabled]="otp.length !== 6 || loading">
+      {{ loading ? 'Verifying...' : 'Verify OTP' }}
+    </button>
+
+    <button
+      class="resend"
+      (click)="resendOtp()"
+      [disabled]="!canResend"
+    >
+      🔁 Resend OTP
+    </button>
+
+  </ng-container>
+ </div>
+
+</div>

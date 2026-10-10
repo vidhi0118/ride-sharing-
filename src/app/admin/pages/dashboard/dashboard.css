@@ -1,0 +1,176 @@
+/* ========================= */
+/* DASHBOARD WRAPPER */
+/* ========================= */
+
+.dashboard-wrapper {
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+.dashboard-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.dashboard-header p {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+/* ========================= */
+/* STATS GRID */
+/* ========================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+/* ========================= */
+/* STAT CARD */
+/* ========================= */
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ICON STYLE */
+
+.icon {
+  font-size: 35px;
+  padding: 18px;
+  border-radius: 50%;
+  background: #f1f3ff;
+}
+
+/* INFO */
+
+.stat-info h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.stat-info p {
+  margin: 5px 0 0;
+  color: #777;
+  font-size: 14px;
+}
+
+/* COLOR VARIATIONS */
+
+.users .icon {
+  background: #e8f0ff;
+  color: #4f6ef7;
+}
+
+.rides .icon {
+  background: #e9fff3;
+  color: #1abc9c;
+}
+
+.bookings .icon {
+  background: #fff3e6;
+  color: #ff8c42;
+}
+/* ========================= */
+/* CHART GRID */
+/* ========================= */
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* CHART CARD */
+
+.chart-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+/* TOP DRIVER */
+
+.top-driver-card {
+  margin-top: 30px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.top-driver-card h3 {
+  margin-bottom: 10px;
+}
+.filters {
+  margin: 20px 0;
+}
+
+.filters button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.chart-card {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+.top-driver-card {
+  margin-top: 25px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.driver-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.driver-item:last-child {
+  border-bottom: none;
+}
+
+.rank {
+  font-size: 22px;
+}
+
+.driver-info p {
+  margin: 0;
+}

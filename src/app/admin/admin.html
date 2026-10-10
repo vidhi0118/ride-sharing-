@@ -1,0 +1,71 @@
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="logo">
+  <h2 class="brand-title">Smart Ride-Share</h2>
+  <span class="brand-subtitle">Admin Panel</span>
+</div>
+
+    <nav>
+      <a routerLink="/admin"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact:true}">
+        📊 Dashboard
+      </a>
+
+      <a routerLink="/admin/users"
+         routerLinkActive="active">
+        👥 Users
+      </a>
+
+      <a routerLink="/admin/rides"
+         routerLinkActive="active">
+        🚗 Rides
+      </a>
+
+      <a routerLink="/admin/drivers"
+         routerLinkActive="active">
+        🧑‍✈️ Driver
+      </a>
+
+      <a routerLink="/admin/driver-analytics"
+         routerLinkActive="active">
+       📊 Driver Analysis
+      </a>
+
+      <a routerLink="/admin/payments"
+         routerLinkActive="active">
+        📄 Payments
+      </a>
+
+      <a routerLink="/admin/admin-analytics"
+         routerLinkActive="active">
+       📊 Admin Analysis
+      </a>
+
+    </nav>
+
+    <button class="logout" (click)="logout()">
+      🚪 Logout
+    </button>
+
+  </aside>
+
+  <!-- MAIN AREA -->
+  <div class="main-wrapper">
+
+    <!-- CLEAN TOPBAR -->
+    <header class="topbar">
+      <h3>Admin Dashboard</h3>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+<nav class="navbar">
+
+  <div class="nav-left">
+    <button class="nav-btn" (click)="goBack()">⬅ Back</button>
+  </div>
+
+  <div class="nav-center">
+    <h3 class="title">RideShare</h3>
+  </div>
+
+  <div class="nav-right">
+
+    <div class="notification-wrapper"
+     (click)="goToNotifications()">
+
+  <div class="bell-container"
+       [class.shake]="isShaking">
+
+    <span>🔔</span>
+
+    <span class="notification-badge"
+          *ngIf="unreadCount > 0">
+      {{ unreadCount }}
+    </span>
+
+  </div>
+
+</div>
+
+    <button class="nav-btn" (click)="goHome()">🏠 Home</button>
+    <button class="nav-btn logout" (click)="logout()">🚪 Logout</button>
+
+  </div>
+
+</nav>

@@ -1,0 +1,152 @@
+/* ================= WRAPPER ================= */
+.analytics-wrapper {
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
+  color: white;
+  animation: fadeIn 0.5s ease;
+}
+
+/* ================= TITLE ================= */
+.analytics-wrapper h2 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* ================= FILTER ================= */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.filters select,
+.filters button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* GLASS INPUT */
+.filters select {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  color: white;
+}
+
+/* BUTTON */
+.filters button {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filters button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+}
+
+/* ================= CHART GRID ================= */
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* ================= CARD ================= */
+.card {
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+  transition: 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* HOVER */
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+/* GLOW BORDER */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 1px;
+  background: linear-gradient(120deg, transparent, #38bdf8, transparent);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: 0.4s;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* ================= CARD TITLE ================= */
+.card h3 {
+  margin-bottom: 10px;
+  color: #38bdf8;
+  font-size: 16px;
+}
+
+/* ================= CANVAS ================= */
+canvas {
+  width: 100% !important;
+  height: 250px !important;
+}
+
+/* ================= DRIVER LIST FIX (IMPORTANT) ================= */
+/* If you reuse cards like driver-list elsewhere */
+.driver-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+/* Ensure cards align properly */
+.driver-list .driver-card,
+.user-list .user-card {
+  width: 100%;
+  height: auto; /* avoid stretching */
+}
+/* SELECT BOX */
+.filters select {
+  background: rgba(15, 23, 42, 0.9);
+  color: #e2e8f0;
+  border-radius: 10px;
+}
+
+/* DROPDOWN LIST (DRIVER LIST) */
+.filters select option {
+  background: #0f172a;   /* 🔥 dark background */
+  color: #e2e8f0;        /* 🔥 light text */
+}
+.filters select option:hover {
+  background: #38bdf8;
+  color: #020617;
+}
+/* ================= ANIMATION ================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

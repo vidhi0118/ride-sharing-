@@ -1,0 +1,103 @@
+<app-passenger-navbar></app-passenger-navbar>
+
+<div class="dashboard-wrapper">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div>
+      <h2>👋 Hello, Rider</h2>
+      <p>Ready for your next trip?</p>
+    </div>
+
+    <button (click)="goToViewDrivers()">
+      <mat-icon>directions_car</mat-icon>
+      Book
+    </button>
+  </div>
+
+  <!-- ACTIVE RIDE -->
+  <div class="status-card" *ngIf="activeRide; else noRide">
+
+    <h3>
+      <mat-icon>local_taxi</mat-icon>
+      Active Ride
+    </h3>
+
+    <p>Driver: {{ activeRide['driverName'] }}</p>
+    <p>Status: {{ activeRide['status'] }}</p>
+
+    <button (click)="goToTrackRide()">Track Now</button>
+  </div>
+
+  <ng-template #noRide>
+    <div class="status-bar">
+      🚗 No active ride
+    </div>
+  </ng-template>
+
+  <!-- MAP -->
+ <div id="map" style="height: 400px;"></div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <mat-icon>route</mat-icon>
+      <h3>{{ totalRides }}</h3>
+      <p>Rides</p>
+    </div>
+
+    <div class="stat-card">
+      <mat-icon>payments</mat-icon>
+      <h3>₹{{ totalSpent }}</h3>
+      <p>Spent</p>
+    </div>
+
+    <div class="stat-card">
+      <mat-icon>replay</mat-icon>
+      <h3>₹{{ totalRefund }}</h3>
+      <p>Refund</p>
+    </div>
+
+  </div>
+
+  <!-- GRID -->
+  <div class="dashboard-grid">
+
+    <div class="dashboard-card" (click)="goToViewDrivers()">
+  <div class="card-inner">
+    <span class="material-icons">map</span>
+    <h3>Drivers</h3>
+  </div>
+</div>
+
+<div class="dashboard-card" (click)="goToMyBookings()">
+  <div class="card-inner">
+    <span class="material-icons">event</span>
+    <h3>Bookings</h3>
+  </div>
+</div>
+
+<div class="dashboard-card" (click)="goToTrackRide()">
+  <div class="card-inner">
+    <span class="material-icons">location_on</span>
+    <h3>Track</h3>
+  </div>
+</div>
+
+<div class="dashboard-card" (click)="goMyRequests()">
+  <div class="card-inner">
+    <span class="material-icons">mail</span>
+    <h3>Requests</h3>
+  </div>
+</div>
+
+<div class="dashboard-card highlight" (click)="goToPayments()">
+  <div class="card-inner">
+    <span class="material-icons">credit_card</span>
+    <h3>Payments</h3>
+  </div>
+</div>
+  </div>
+
+</div>

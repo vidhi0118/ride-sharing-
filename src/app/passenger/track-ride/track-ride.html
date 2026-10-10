@@ -1,0 +1,21 @@
+<h2>Track Your Ride</h2>
+
+<div *ngIf="activeRide" class="ride-card" (click)="openTracking()">
+
+  <h3>{{activeRide.driverName}}</h3>
+
+  <p><b>Vehicle:</b> {{activeRide.vehicle}}</p>
+
+  <p><b>Pickup:</b> {{activeRide.fromLocation}}</p>
+
+  <p><b>Destination:</b> {{activeRide.toLocation}}</p>
+
+  <p class="status">Ride Started 🚗</p>
+
+  <small>Click to track driver</small>
+
+</div>
+
+<div *ngIf="!activeRide">
+  <p>No active rides</p>
+</div>

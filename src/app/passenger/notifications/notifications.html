@@ -1,0 +1,47 @@
+<h2>🔔 Notifications</h2>
+
+<button class="clear-btn" (click)="clearAll()">
+  🗑 Clear All
+</button>
+
+<p *ngIf="notifications.length === 0">
+  No notifications yet
+</p>
+
+<div *ngFor="let n of notifications"
+     class="notification-card"
+     [class.unread]="!n.read">
+
+  <div class="notification-header">
+    <strong>
+      {{ n.driverName || 'System' }}
+    </strong>
+
+    <span *ngIf="n.status"
+          [style.color]="getStatusColor(n.status)">
+      {{ n.status | uppercase }}
+    </span>
+  </div>
+
+  <p *ngIf="n.from && n.to">
+    Route: {{ n.from }} → {{ n.to }}
+  </p>
+
+  <p *ngIf="n.message">
+    {{ n.message }}
+  </p>
+
+  <small>
+    {{ n.createdAt?.toDate() | date:'medium' }}
+  </small>
+
+  <button class="delete-btn"
+          (click)="deleteNotification(n.id)">
+    ❌
+  </button>
+
+</div>
+
+<div class="toast" *ngIf="showToast">
+  🔔 {{ toastMessage }}
+</div>

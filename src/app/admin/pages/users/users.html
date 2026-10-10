@@ -1,0 +1,116 @@
+<div class="users-wrapper">
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button
+      [class.active]="activeTab==='passenger'"
+      (click)="activeTab='passenger'">
+      👤 Passengers
+    </button>
+
+    <button
+      [class.active]="activeTab==='driver'"
+      (click)="activeTab='driver'">
+      🚗 Drivers
+    </button>
+  </div>
+
+  <!-- LIST -->
+  <div class="user-list">
+    <div *ngFor="let user of activeTab==='passenger' ? passengers : drivers"
+         class="user-card">
+
+      <span>{{ user.name }}</span>
+
+      <button (click)="openDetails(user)">
+        View
+      </button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- PREMIUM MODAL -->
+<div class="modal-overlay" *ngIf="selectedUser">
+
+  <div class="modal-box">
+
+    <button class="close-btn" (click)="closeDetails()">✖</button>
+
+    <div class="modal-header">
+      <div>
+        <h2>{{ selectedUser.name }}</h2>
+        <span class="role-badge">
+          {{ selectedUser.role | titlecase }}
+        </span>
+      </div>
+
+      <span
+        class="aadhaar-badge"
+        [class.verified]="selectedUser.aadhaarVerified"
+        [class.not-verified]="!selectedUser.aadhaarVerified">
+        {{ selectedUser.aadhaarVerified ? 'Verified' : 'Not Verified' }}
+      </span>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- LEFT INFO -->
+      <div class="info-section">
+
+        <div class="info-item">
+          <label>Email</label>
+          <p>{{ selectedUser.email }}</p>
+        </div>
+
+        <div class="info-item">
+          <label>Phone</label>
+          <p>{{ selectedUser.phone }}</p>
+        </div>
+
+        <div *ngIf="selectedUser.role==='driver'" class="info-item">
+          <label>Experience</label>
+          <p>
+            {{ calculateExperience(selectedUser.drivingStartDate) }} Years
+          </p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT DRIVER SIDE -->
+      <div *ngIf="selectedUser.role==='driver'" class="driver-section">
+
+        <img *ngIf="selectedUser.photoUrl"
+             [src]="selectedUser.photoUrl"
+             class="driver-photo">
+
+        <div class="vehicles-box">
+          <h4>Vehicles</h4>
+          <div *ngFor="let v of selectedUser.vehicles"
+               class="vehicle-item">
+            {{ v.category }} - {{ v.name }} ({{ v.year }})
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="modal-actions">
+
+      <button class="edit-btn">
+        ✏ Edit
+      </button>
+
+      <button class="delete-btn"
+              (click)="deleteUser(selectedUser.id)">
+        🗑 Delete
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

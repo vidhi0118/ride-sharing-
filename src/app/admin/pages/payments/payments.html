@@ -1,0 +1,80 @@
+<div class="payments-wrapper">
+
+  <h2>💳 Payments</h2>
+
+  <!-- STATS -->
+  <div class="stats">
+
+    <div class="card revenue">
+      <h3>₹{{ totalRevenue }}</h3>
+      <p>Revenue</p>
+    </div>
+
+    <div class="card refund">
+      <h3>₹{{ totalRefund }}</h3>
+      <p>Refund</p>
+    </div>
+
+    <div class="card penalty">
+      <h3>₹{{ totalPenalty }}</h3>
+      <p>Penalty</p>
+    </div>
+
+  </div>
+
+  <!-- FILTER -->
+  <div class="filters">
+    <select [(ngModel)]="selectedStatus" (change)="applyFilter()">
+      <option value="all">All</option>
+      <option value="paid">Paid</option>
+      <option value="refunded">Refunded</option>
+      <option value="pending">Pending</option>
+    </select>
+
+    <button (click)="exportCSV()">📄 Export</button>
+  </div>
+
+  <!-- TABLE -->
+  <table>
+
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Passenger</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Payment</th>
+        <th>Penalty</th>
+        <th>Revenue</th>
+        <th>Refund</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of filtered">
+        <td>{{ p.date }}</td>
+        <td>{{ p.passenger }}</td>
+        <td>₹{{ p.amount }}</td>
+
+        <td>
+          <span class="status" [ngClass]="p.status">
+            {{ p.status }}
+          </span>
+        </td>
+
+        <td>
+          <span class="payment" [ngClass]="p.paymentStatus">
+            {{ p.paymentStatus }}
+          </span>
+        </td>
+
+        <td>₹{{ p.penalty }}</td>
+        <td>₹{{ p.revenue }}</td>
+        <td>₹{{ p.refund }}</td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>

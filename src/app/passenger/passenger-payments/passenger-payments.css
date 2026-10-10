@@ -1,0 +1,120 @@
+/* Title */
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Table */
+table {
+  width: 90%;
+  margin: auto;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Header */
+th {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  padding: 14px;
+}
+
+/* Cells */
+td {
+  padding: 12px;
+  text-align: center;
+}
+
+/* Zebra */
+tr:nth-child(even) {
+  background: #f7f9fc;
+}
+
+/* ✅ SAFE Hover (NO transform) */
+tr:hover {
+  background: #e3f2fd;
+}
+
+/* Status */
+.paid {
+  background: #e6f9f0;
+  color: #2ecc71;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.refunded {
+  background: #fdecea;
+  color: #e74c3c;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.pending {
+  background: #fff8e1;
+  color: #f39c12;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+.penalty-info {
+  width: 90%;
+  margin: 20px auto;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border-left: 6px solid #f59e0b;
+  border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+  animation: slideFade 0.5s ease;
+}
+
+/* Hover Effect */
+.penalty-info:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Heading */
+.penalty-info h4 {
+  margin-bottom: 10px;
+  color: #92400e;
+  font-size: 18px;
+}
+
+/* List */
+.penalty-info ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* List Items */
+.penalty-info li {
+  margin-bottom: 6px;
+  color: #78350f;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: 0.2s;
+}
+
+/* Bullet Hover */
+.penalty-info li:hover {
+  color: #b45309;
+  transform: translateX(4px);
+}
+
+/* Animation */
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

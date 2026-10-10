@@ -1,0 +1,97 @@
+/* Container Card */
+.ride-card {
+  max-width: 750px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* One-line form group */
+.mb-3 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 18px !important;
+}
+
+/* Labels */
+.mb-3 label,
+.mb-3 .form-label {
+  width: 200px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0;
+}
+
+/* Inputs & Select */
+.form-control {
+  flex: 1;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 8px 14px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Focus Effect */
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+}
+
+/* Textarea */
+textarea.form-control {
+  height: 90px;
+  resize: none;
+}
+
+/* Alerts Styling */
+.alert {
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* Primary Alert */
+.alert-primary {
+  background: #f0f9ff;
+  border: 1px solid #cce5ff;
+}
+
+/* Success Alert */
+.alert-success {
+  background: #f0fff4;
+  border: 1px solid #c3e6cb;
+}
+
+/* Modern Button */
+.btn-success {
+  height: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  transition: all 0.3s ease;
+}
+
+/* Button Hover */
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mb-3 {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mb-3 label,
+  .mb-3 .form-label {
+    width: 100%;
+  }
+}
